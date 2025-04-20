@@ -1,59 +1,114 @@
-body {
-    background-color: #E0F7FA; /* Cyan background to match the screenshot */
-}
-
-.game-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 200px;
-    height: 250px;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.game-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-.game-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.game-card h3 {
-    font-size: 1rem;
-    text-align: center;
-    padding: 0.5rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.search-bar input {
-    width: 200px;
-    transition: width 0.3s ease;
-}
-
-.search-bar input:focus {
-    width: 250px;
-}
-
-@media (max-width: 640px) {
-    .game-card {
-        width: 100%;
-        height: 300px;
+const games = [
+    {
+        title: "Adventure Quest",
+        description: "Embark on an epic journey through mystical lands!",
+        category: "Adventure",
+        image: "https://images.pexels.com/photos/1632790/pexels-photo-1632790.jpeg",
+        url: "game.html?game=adventure-quest"
+    },
+    {
+        title: "Puzzle Mania",
+        description: "Solve challenging puzzles to test your brain!",
+        category: "Puzzle",
+        image: "https://images.pexels.com/photos/716398/pexels-photo-716398.jpeg",
+        url: "game.html?game=puzzle-mania"
+    },
+    {
+        title: "Racing Rush",
+        description: "Speed through thrilling tracks in high-speed cars!",
+        category: "Racing",
+        image: "https://images.pexels.com/photos/163236/cars-luxury-sport-road-163236.jpeg",
+        url: "game.html?game=racing-rush"
+    },
+    {
+        title: "Space Shooter",
+        description: "Blast enemies in an interstellar battle!",
+        category: "Shooter",
+        image: "https://images.pexels.com/photos/2150/sky-space-dark-galaxy.jpg",
+        url: "game.html?game=space-shooter"
+    },
+    {
+        title: "Jungle Trek",
+        description: "Explore dense jungles in search of treasure!",
+        category: "Adventure",
+        image: "https://images.pexels.com/photos/9754/mountains-clouds-forest-fog.jpg",
+        url: "game.html?game=jungle-trek"
+    },
+    {
+        title: "Brain Teaser",
+        description: "Challenge your mind with tricky puzzles!",
+        category: "Puzzle",
+        image: "https://images.pexels.com/photos/220694/pexels-photo-220694.jpeg",
+        url: "game.html?game=brain-teaser"
+    },
+    {
+        title: "Nitro Blitz",
+        description: "Race against time in this adrenaline-pumping game!",
+        category: "Racing",
+        image: "https://images.pexels.com/photos/3782734/pexels-photo-3782734.jpeg",
+        url: "game.html?game=nitro-blitz"
+    },
+    {
+        title: "Alien Invasion",
+        description: "Defend Earth from extraterrestrial threats!",
+        category: "Shooter",
+        image: "https://images.pexels.com/photos/739090/pexels-photo-739090.jpeg",
+        url: "game.html?game=alien-invasion"
+    },
+    {
+        title: "Pixel Runner",
+        description: "Dash through retro-style levels in this arcade hit!",
+        category: "Arcade",
+        image: "https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg",
+        url: "game.html?game=pixel-runner"
+    },
+    {
+        title: "Castle Defense",
+        description: "Strategize to protect your kingdom from invaders!",
+        category: "Strategy",
+        image: "https://images.pexels.com/photos/208745/pexels-photo-208745.jpeg",
+        url: "game.html?game=castle-defense"
+    },
+    {
+        title: "Neon Breaker",
+        description: "Smash blocks in this vibrant arcade classic!",
+        category: "Arcade",
+        image: "https://images.pexels.com/photos/3165335/pexels-photo-3165335.jpeg",
+        url: "game.html?game=neon-breaker"
+    },
+    {
+        title: "War Tactics",
+        description: "Lead your army to victory with clever strategies!",
+        category: "Strategy",
+        image: "https://images.pexels.com/photos/1638237/pexels-photo-1638237.jpeg",
+        url: "game.html?game=war-tactics"
     }
+];
 
-    .game-card img {
-        height: 250px;
-    }
+function displayGames(filteredGames) {
+    const gamesContainer = document.querySelector(".games");
+    gamesContainer.innerHTML = "";
 
-    .search-bar input {
-        width: 150px;
-    }
-
-    .search-bar input:focus {
-        width: 200px;
-    }
+    filteredGames.forEach(game => {
+        const gameCard = document.createElement("a");
+        gameCard.href = game.url;
+        gameCard.className = "game-card bg-white shadow-md";
+        gameCard.innerHTML = `
+            <img src="${game.image}" alt="${game.title}" class="rounded-t-lg">
+            <h3 class="text-gray-800">${game.title}</h3>
+        `;
+        gamesContainer.appendChild(gameCard);
+    });
 }
+
+function searchGames() {
+    const query = document.getElementById("searchInput").value.toLowerCase();
+    const filteredGames = games.filter(game => game.title.toLowerCase().includes(query));
+    displayGames(filteredGames);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    displayGames(games);
+
+    document.getElementById("searchInput").addEventListener("input", searchGames);
+});
