@@ -7,52 +7,23 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gray-100">
-    <header class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-4 sticky top-0 z-10">
+<body class="bg-cyan-100">
+    <header class="bg-white p-4 shadow-md sticky top-0 z-10">
         <div class="container mx-auto flex justify-between items-center flex-wrap">
-            <div class="text-2xl font-bold">GameHub</div>
+            <div class="text-2xl font-bold text-purple-600">GameHub</div>
             <div class="search-bar mt-2 md:mt-0">
-                <input type="text" id="searchInput" placeholder="Search games..." class="p-2 rounded-l-md text-black">
-                <button onclick="searchGames()" class="bg-yellow-400 text-black p-2 rounded-r-md">Search</button>
+                <input type="text" id="searchInput" placeholder="Search games..." class="p-2 rounded-md text-black border border-gray-300">
             </div>
-            <nav class="mt-2 md:mt-0">
-                <ul class="flex space-x-4">
-                    <li><a href="#home" class="hover:underline">Home</a></li>
-                    <li><a href="#categories" class="hover:underline">Categories</a></li>
-                    <li><a href="#about" class="hover:underline">About</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
 
-    <div class="flex">
-        <aside class="sidebar bg-gray-800 text-white w-64 p-4 h-screen fixed md:static">
-            <h2 class="text-xl font-bold mb-4">Categories</h2>
-            <ul id="categoryList" class="space-y-2">
-                <li><a href="#" onclick="filterByCategory('All')" class="hover:text-yellow-400">All</a></li>
-                <li><a href="#" onclick="filterByCategory('Adventure')" class="hover:text-yellow-400">Adventure</a></li>
-                <li><a href="#" onclick="filterByCategory('Puzzle')" class="hover:text-yellow-400">Puzzle</a></li>
-                <li><a href="#" onclick="filterByCategory('Racing')" class="hover:text-yellow-400">Racing</a></li>
-                <li><a href="#" onclick="filterByCategory('Shooter')" class="hover:text-yellow-400">Shooter</a></li>
-                <li><a href="#" onclick="filterByCategory('Arcade')" class="hover:text-yellow-400">Arcade</a></li>
-                <li><a href="#" onclick="filterByCategory('Strategy')" class="hover:text-yellow-400">Strategy</a></li>
-            </ul>
-        </aside>
-
-        <main class="container mx-auto p-4 md:ml-64">
-            <section class="hero text-center p-8 bg-gradient-to-b from-indigo-500 to-purple-500 text-white rounded-lg">
-                <h1 class="text-4xl font-bold">Play Free Online Games!</h1>
-                <p class="mt-2">Discover fun and exciting games for all ages.</p>
-            </section>
-
-            <section class="game-grid mt-8">
-                <h2 class="text-2xl font-bold text-center">Popular Games</h2>
-                <div class="games grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
-                    <!-- Game cards populated by JavaScript -->
-                </div>
-            </section>
-        </main>
-    </div>
+    <main class="container mx-auto p-4">
+        <section class="game-grid mt-4">
+            <div class="games grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                <!-- Game cards populated by JavaScript -->
+            </div>
+        </section>
+    </main>
 
     <footer class="bg-gray-800 text-white text-center p-4 mt-8">
         <p>© 2025 GameHub. All rights reserved.</p>
