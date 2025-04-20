@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Game - GameHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100">
+    <header class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold">GameHub</div>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="index.html" class="hover:underline">Home</a></li>
+                    <li><a href="index.html#categories" class="hover:underline">Categories</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-4">
+        <section class="game-player">
+            <h1 id="gameTitle" class="text-3xl font-bold mb-4">Loading...</h1>
+            <iframe id="gameFrame" src="" class="w-full h-[600px] rounded-lg shadow-md" frameborder="0"></iframe>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white text-center p-4">
+        <p>© 2025 GameHub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const gameData = {
+            "adventure-quest": {
+                title: "Adventure Quest",
+                embedUrl: "https://www.example.com/games/adventure-quest"
+            },
+            "puzzle-mania": {
+                title: "Puzzle Mania",
+                embedUrl: "https://www.example.com/games/puzzle-mania"
+            },
+            "racing-rush": {
+                title: "Racing Rush",
+                embedUrl: "https://www.example.com/games/racing-rush"
+            },
+            "space-shooter": {
+                title: "Space Shooter",
+                embedUrl: "https://www.example.com/games/space-shooter"
+            },
+            "jungle-trek": {
+                title: "Jungle Trek",
+                embedUrl: "https://www.example.com/games/jungle-trek"
+            },
+            "brain-teaser": {
+                title: "Brain Teaser",
+                embedUrl: "https://www.example.com/games/brain-teaser"
+            },
+            "nitro-blitz": {
+                title: "Nitro Blitz",
+                embedUrl: "https://www.example.com/games/nitro-blitz"
+            },
+            "alien-invasion": {
+                title: "Alien Invasion",
+                embedUrl: "https://www.example.com/games/alien-invasion"
+            },
+            "pixel-runner": {
+                title: "Pixel Runner",
+                embedUrl: "https://www.example.com/games/pixel-runner"
+            },
+            "castle-defense": {
+                title: "Castle Defense",
+                embedUrl: "https://www.example.com/games/castle-defense"
+            },
+            "neon-breaker": {
+                title: "Neon Breaker",
+                embedUrl: "https://www.example.com/games/neon-breaker"
+            },
+            "war-tactics": {
+                title: "War Tactics",
+                embedUrl: "https://www.example.com/games/war-tactics"
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const params = new URLSearchParams(window.location.search);
+            const gameId = params.get("game");
+            const game = gameData[gameId];
+
+            if (game) {
+                document.getElementById("gameTitle").textContent = game.title;
+                document.getElementById("gameFrame").src = game.embedUrl;
+            } else {
+                document.getElementById("gameTitle").textContent = "Game Not Found";
+            }
+        });
+    </script>
+</body>
+</html>
