@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-gray-100">
-    <header class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white p-4">
+    <header class="bg-purple-600 text-white p-4">
         <div class="container mx-auto flex justify-between items-center">
             <div class="text-2xl font-bold">GameHub</div>
             <nav>
                 <ul class="flex space-x-4">
                     <li><a href="index.html" class="hover:underline">Home</a></li>
-                    <li><a href="index.html#categories" class="hover:underline">Categories</a></li>
+                    <li><a href="index.html#categories" class="hover:underline">Category</a></li>
                 </ul>
             </nav>
         </div>
@@ -22,12 +22,19 @@
 
     <main class="container mx-auto p-4">
         <section class="game-player">
-            <h1 id="gameTitle" class="text-3xl font-bold mb-4">Loading...</h1>
-            <iframe id="gameFrame" src="" class="w-full h-[1000px] rounded-lg shadow-md" frameborder="0"></iframe>
+            <h1 id="gameTitle" class="text-3xl font-bold mb-2"></h1>
+            <div class="flex items-center space-x-2 mb-4">
+                <span id="gameCategory" class="text-sm text-purple-600"></span>
+            </div>
+            <p id="gameDescription" class="text-gray-700 mb-4"></p>
+            <div class="flex justify-between items-center mb-4">
+                <button id="fullscreenBtn" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Full Screen</button>
+            </div>
+            <iframe id="gameFrame" src="" class="w-full h-[800px] rounded-lg shadow-md" frameborder="0"></iframe>
         </section>
     </main>
 
-    <footer class="bg-gray-800 text-white text-center p-4">
+    <footer class="bg-gray-900 text-white text-center p-4">
         <p>© 2025 GameHub. All rights reserved.</p>
     </footer>
 
@@ -35,50 +42,74 @@
         const gameData = {
             "adventure-quest": {
                 title: "Adventure Quest",
-                embedUrl: "https://www.example.com/games/adventure-quest"
+                category: "Adventure",
+                description: "Embark on an epic journey through mystical lands!",
+                embedUrl: "https://tataedu23.github.io/g5/class-406/"
             },
             "puzzle-mania": {
                 title: "Puzzle Mania",
+                category: "Puzzle",
+                description: "Solve challenging puzzles to test your brain!",
                 embedUrl: "https://tataedu23.github.io/g5/class-406/"
             },
             "racing-rush": {
                 title: "Racing Rush",
-                embedUrl: "https://www.example.com/games/racing-rush"
+                category: "Racing",
+                description: "Speed through thrilling tracks in high-speed cars!",
+                embedUrl: "https://tataedu23.github.io/g177/class-334/"
             },
             "space-shooter": {
                 title: "Space Shooter",
+                category: "Shooter",
+                description: "Blast enemies in an interstellar battle!",
                 embedUrl: "https://www.example.com/games/space-shooter"
             },
             "jungle-trek": {
                 title: "Jungle Trek",
+                category: "Adventure",
+                description: "Explore dense jungles in search of treasure!",
                 embedUrl: "https://www.example.com/games/jungle-trek"
             },
             "brain-teaser": {
                 title: "Brain Teaser",
+                category: "Puzzle",
+                description: "Challenge your mind with tricky puzzles!",
                 embedUrl: "https://www.example.com/games/brain-teaser"
             },
             "nitro-blitz": {
                 title: "Nitro Blitz",
+                category: "Racing",
+                description: "Race against time in this adrenaline-pumping game!",
                 embedUrl: "https://www.example.com/games/nitro-blitz"
             },
             "alien-invasion": {
                 title: "Alien Invasion",
+                category: "Shooter",
+                description: "Defend Earth from extraterrestrial threats!",
                 embedUrl: "https://www.example.com/games/alien-invasion"
             },
             "pixel-runner": {
                 title: "Pixel Runner",
+                category: "Arcade",
+                description: "Dash through retro-style levels in this arcade hit!",
                 embedUrl: "https://www.example.com/games/pixel-runner"
             },
             "castle-defense": {
                 title: "Castle Defense",
+                category: "Strategy",
+                description: "Strategize to protect your kingdom from invaders!",
                 embedUrl: "https://www.example.com/games/castle-defense"
             },
             "neon-breaker": {
                 title: "Neon Breaker",
+                category: "Arcade",
+                description: "Smash blocks in this vibrant arcade classic!",
                 embedUrl: "https://www.example.com/games/neon-breaker"
             },
             "war-tactics": {
                 title: "War Tactics",
+                category: "Strategy",
+                description: "Lead your army to victory with clever strategies!",
                 embedUrl: "https://www.example.com/games/war-tactics"
             }
         };
@@ -90,10 +121,33 @@
 
             if (game) {
                 document.getElementById("gameTitle").textContent = game.title;
+                document.getElementById("gameCategory").textContent = game.category;
+                document.getElementById("gameDescription").textContent = game.description;
                 document.getElementById("gameFrame").src = game.embedUrl;
             } else {
                 document.getElementById("gameTitle").textContent = "Game Not Found";
             }
+
+            const fullscreenBtn = document.getElementById("fullscreenBtn");
+            const gameFrame = document.getElementById("gameFrame");
+
+            fullscreenBtn.addEventListener("click", () => {
+                if (!document.fullscreenElement) {
+                    gameFrame.requestFullscreen().catch(err => {
+                        console.error(`Error attempting to enable full-screen mode: ${err.message}`);
+                    });
+                    fullscreenBtn.textContent = "Exit Full Screen";
+                } else {
+                    document.exitFullscreen();
+                    fullscreenBtn.textContent = "Full Screen";
+                }
+            });
+
+            document.addEventListener("fullscreenchange", () => {
+                if (!document.fullscreenElement) {
+                    fullscreenBtn.textContent = "Full Screen";
+                }
+            });
         });
     </script>
 </body>
